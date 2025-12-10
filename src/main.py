@@ -13,7 +13,6 @@ def lambda_handler(event, context):
     try:
         response = table.scan()
         all_items.extend(response['Items'])
-        print(all_items)
 
         body += '<div class="grid">'
         for item in all_items:
@@ -29,10 +28,7 @@ def lambda_handler(event, context):
         body += '</div>'
 
     except Exception as e:
-        print(e)
         body = 'Error: ' + str(e)
-
-    print(body)
 
     return {
         'statusCode': 200,
